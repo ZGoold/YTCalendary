@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,9 @@
     <title>Calendario del Creador - ¡Planifica tu Contenido! 🚀</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- Variables CSS --- */
+        /* --- CSS Variables - Original Theme (Light Mode Default) --- */
         :root {
-            --color-primary: #FF6B6B; /* Rojo vibrante, pensando en YouTube */
+            --color-primary: #FF6B6B; /* Rojo vibrante */
             --color-secondary: #4ECDC4; /* Turquesa complementario */
             --color-accent: #FFD166; /* Amarillo para acentos */
             --color-text-dark: #333;
@@ -22,19 +22,62 @@
             --font-body: 'Open Sans', sans-serif;
         }
 
-        /* --- Nuevas Variables para Modo Oscuro --- */
-        body.dark-mode {
-            --color-primary: #FF9999; /* Rojo más suave para oscuro */
-            --color-secondary: #7ED6DF; /* Turquesa más claro para oscuro */
-            --color-accent: #FFE599; /* Amarillo más claro */
-            --color-text-dark: #e0e0e0; /* Texto claro en oscuro */
-            --color-text-light: #333; /* Texto oscuro en elementos claros si los hubiera */
-            --color-bg-light: #1a1a2e; /* Fondo general oscuro */
-            --color-bg-dark: #16213e; /* Fondo de contenedores más oscuro */
-            --color-card-bg: #0f3460; /* Fondo de tarjetas oscuro */
-            --color-border: #4a5d73;
-            --color-shadow: rgba(0, 0, 0, 0.3);
+        /* --- CSS Variables for Blue Theme --- */
+        body.blue-mode {
+            --color-primary: #3498DB; /* Azul vibrante */
+            --color-secondary: #5DADE2; /* Azul más claro, complementario */
+            --color-accent: #A9CCE3; /* Azul muy claro para acentos */
+            --color-text-dark: #2C3E50; /* Azul oscuro para texto principal */
+            --color-text-light: #F8F9FA; /* Blanco grisáceo para texto claro */
+            --color-bg-light: #EBF5FB; /* Fondo muy claro, casi blanco */
+            --color-bg-dark: #BDC3C7; /* Gris claro para fondos secundarios */
+            --color-card-bg: #FFFFFF; /* Blanco puro para tarjetas */
+            --color-border: #D4E6F1; /* Borde suave azul claro */
+            --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra ligera */
         }
+
+        /* --- CSS Variables for Green Theme --- */
+        body.green-mode {
+            --color-primary: #2ECC71; /* Verde vibrante */
+            --color-secondary: #58D68D; /* Verde más claro, complementario */
+            --color-accent: #A3E4D7; /* Verde muy claro para acentos */
+            --color-text-dark: #196F3D; /* Verde oscuro para texto principal */
+            --color-text-light: #F8F9FA; /* Blanco grisáceo para texto claro */
+            --color-bg-light: #E8F8F5; /* Fondo muy claro, casi blanco */
+            --color-bg-dark: #BBEADD; /* Gris claro verdoso para fondos secundarios */
+            --color-card-bg: #FFFFFF; /* Blanco puro para tarjetas */
+            --color-border: #D1F2EB; /* Borde suave verde claro */
+            --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra ligera */
+        }
+
+        /* --- Dark Mode for Blue Theme (as previously defined) --- */
+        body.blue-mode.dark-mode {
+            --color-primary: #85C1E9; /* Azul brillante para oscuro */
+            --color-secondary: #5499C7; /* Azul medio */
+            --color-accent: #2874A6; /* Azul más oscuro para acentos */
+            --color-text-dark: #EAECEE; /* Texto claro en oscuro */
+            --color-text-light: #2C3E50; /* Texto oscuro en elementos claros si los hubiera */
+            --color-bg-light: #212F3D; /* Fondo general oscuro */
+            --color-bg-dark: #1C2833; /* Fondo de contenedores más oscuro */
+            --color-card-bg: #2C3E50; /* Fondo de tarjetas oscuro */
+            --color-border: #34495E; /* Borde más oscuro */
+            --color-shadow: rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+        }
+
+        /* --- Dark Mode for Green Theme (similar to blue's dark mode) --- */
+        body.green-mode.dark-mode {
+            --color-primary: #76D7C4; /* Verde brillante para oscuro */
+            --color-secondary: #45B39D; /* Verde medio */
+            --color-accent: #1E8449; /* Verde más oscuro para acentos */
+            --color-text-dark: #EAECEE; /* Texto claro en oscuro */
+            --color-text-light: #196F3D; /* Texto oscuro en elementos claros si los hubiera */
+            --color-bg-light: #1A5276; /* Fondo general oscuro (azul oscuro para contraste) */
+            --color-bg-dark: #154360; /* Fondo de contenedores más oscuro */
+            --color-card-bg: #1F618D; /* Fondo de tarjetas oscuro */
+            --color-border: #2980B9; /* Borde más oscuro */
+            --color-shadow: rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+        }
+
 
         /* --- Global Reset & Base Styles --- */
         *, *::before, *::after {
@@ -100,9 +143,14 @@
             margin-bottom: 20px;
             padding: 10px 0;
             border-bottom: 2px solid var(--color-border);
+            flex-wrap: wrap; /* Para asegurar que los botones se ajusten en pantallas pequeñas */
+            gap: 10px; /* Espacio entre los elementos */
+        }
+        .calendar-nav > * {
+            flex-shrink: 0; /* Evita que los elementos se encojan si no hay espacio */
         }
 
-        .calendar-nav button {
+        .calendar-nav button, .calendar-nav select {
             background-color: var(--color-secondary);
             color: var(--color-text-light);
             border: none;
@@ -112,29 +160,28 @@
             font-size: 1.1em;
             font-family: var(--font-heading);
             transition: background-color 0.3s ease, transform 0.2s ease;
+            -webkit-appearance: none; /* Eliminar estilo por defecto de select en webkit */
+            -moz-appearance: none;    /* Eliminar estilo por defecto de select en mozilla */
+            appearance: none;         /* Eliminar estilo por defecto de select */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22white%22%20d%3D%22M287%20197.8L159.2%2069.9c-4.4-4.4-11.4-4.4-15.8%200L5.4%20197.8c-4.4%204.4-4.4%2011.4%200%2015.8l15.8%2015.8c4.4%204.4%2011.4%204.4%2015.8%200l118.8-118.7L255.4%20229.4c4.4%204.4%2011.4%204.4%2015.8%200l15.8-15.8c4.4-4.5%204.4-11.5%200-15.9z%22%2F%3E%3C%2Fsvg%3E'); /* Flecha personalizada para select */
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+            padding-right: 35px; /* Espacio para la flecha */
         }
 
-        .calendar-nav button:hover {
-            background-color: #3cb0a8;
+        .calendar-nav button:hover, .calendar-nav select:hover {
+            background-color: var(--color-primary); /* Un color de hover que combine */
             transform: translateY(-2px);
         }
 
-        /* Style for the new reset button */
+        /* Styles for specific buttons */
         .calendar-nav #resetDatesBtn {
-            background-color: #dc3545;
+            background-color: #E74C3C; /* Rojo para resetear */
         }
         .calendar-nav #resetDatesBtn:hover {
-            background-color: #c82333;
+            background-color: #CB4335;
         }
-
-        /* Style for the new theme toggle button */
-        .calendar-nav #themeToggleBtn {
-            background-color: #6c757d;
-        }
-        .calendar-nav #themeToggleBtn:hover {
-            background-color: #5a6268;
-        }
-
 
         .current-month-year {
             font-family: var(--font-heading);
@@ -177,13 +224,13 @@
             align-items: flex-start;
             position: relative;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; /* Added border-color to transition */
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
             overflow: hidden;
             border: 1px solid var(--color-border);
             text-decoration: none;
         }
 
-        .day-cell.droppable { /* Added for drag & drop highlight */
+        .day-cell.droppable {
             border: 2px dashed var(--color-primary);
             box-shadow: 0 0 10px var(--color-primary);
         }
@@ -195,7 +242,7 @@
 
         .day-cell.today {
             border: 2px solid var(--color-primary);
-            box-shadow: 0 0 15px rgba(255,107,107,0.4);
+            box-shadow: 0 0 15px rgba(var(--color-primary-rgb),0.4); /* Usa el color primario dinámico */
         }
 
         .day-number-wrapper {
@@ -217,7 +264,7 @@
             transition: color 0.3s ease, background-color 0.3s ease;
         }
 
-        /* El "gancho" que cambia de color */
+        /* The "hook" that changes color */
         .day-cell::before {
             content: '';
             position: absolute;
@@ -235,7 +282,7 @@
             background-color: var(--data-color-value);
         }
 
-        /* Cuando el día tiene un color de gancho y el texto del día necesita adaptarse */
+        /* When the day has a hook color and the day text needs to adapt */
         .day-cell[data-color] .day-number {
              background-color: rgba(255, 255, 255, 0.9);
         }
@@ -295,7 +342,7 @@
         }
 
 
-        /* --- Modal para Añadir/Editar Detalles --- */
+        /* --- Modal to Add/Edit Details --- */
         .modal {
             display: none;
             position: fixed;
@@ -401,7 +448,7 @@
         }
 
         .modal-content button.save-button:hover {
-            background-color: #d14c4c;
+            background-color: var(--color-secondary); /* Un color de hover que combine */
             transform: translateY(-2px);
         }
 
@@ -458,7 +505,7 @@
             object-fit: contain;
         }
         #currentImagePreview button {
-            background-color: #dc3545 !important;
+            background-color: #E74C3C !important; /* Rojo para el botón de quitar imagen */
             width: auto !important;
             padding: 8px 15px !important;
             font-size: 0.9em !important;
@@ -466,7 +513,7 @@
             display: inline-block;
         }
         #currentImagePreview button:hover {
-            background-color: #c82333 !important;
+            background-color: #CB4335 !important;
         }
 
         /* --- Footer --- */
@@ -512,7 +559,7 @@
                 gap: 10px;
                 justify-content: center;
             }
-            .calendar-nav button {
+            .calendar-nav button, .calendar-nav select {
                 flex-grow: 1;
             }
             .weekdays, .days-grid {
@@ -550,7 +597,7 @@
             h1 {
                 font-size: 2em;
             }
-            .calendar-nav button {
+            .calendar-nav button, .calendar-nav select {
                 padding: 8px 12px;
                 font-size: 1em;
             }
@@ -572,7 +619,14 @@
             <div class="current-month-year" id="currentMonthYear"></div>
             <button id="nextMonth">Siguiente →</button>
             <button id="resetDatesBtn">🗑️ Resetear Fechas</button>
-            <button id="themeToggleBtn">☀️ Modo Claro</button>
+            <!-- Dropdown para seleccionar el tema -->
+            <select id="themeSelector">
+                <option value="original">☀️ Tema Original</option>
+                <option value="blue">🔵 Tema Azul</option>
+                <option value="green">🟢 Tema Verde</option>
+            </select>
+            <!-- El botón de modo oscuro/claro ahora cambiará el sub-tema (light/dark) -->
+            <button id="darkModeToggleBtn">🌙 Modo Oscuro</button>
         </div>
 
         <div class="weekdays">
@@ -641,7 +695,8 @@
         const colorPalette = document.querySelector('.color-palette');
         const customColorPicker = document.getElementById('customColorPicker');
         const resetDatesBtn = document.getElementById('resetDatesBtn');
-        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeSelector = document.getElementById('themeSelector'); // Nuevo selector de tema
+        const darkModeToggleBtn = document.getElementById('darkModeToggleBtn'); // Botón para modo oscuro/claro del sub-tema
 
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
@@ -654,7 +709,7 @@
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
         ];
 
-        // --- Funciones del Calendario ---
+        // --- Calendar Functions ---
 
         function renderCalendar() {
             daysGrid.innerHTML = '';
@@ -669,7 +724,6 @@
             for (let i = 0; i < firstDayOfMonth; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.classList.add('day-cell', 'empty-day');
-                // Make empty cells droppable
                 emptyCell.addEventListener('dragover', dragOver);
                 emptyCell.addEventListener('dragleave', dragLeave);
                 emptyCell.addEventListener('drop', drop);
@@ -724,15 +778,13 @@
                         delete dayCell.dataset.color;
                     }
 
-                    // Make the day cell draggable if it has content
                     dayCell.draggable = true;
                 } else {
-                    dayCell.draggable = false; // Empty cells are not draggable
+                    dayCell.draggable = false;
                 }
 
                 dayCell.addEventListener('click', () => openModal(dayCell));
                 
-                // Add Drag & Drop event listeners
                 dayCell.addEventListener('dragstart', dragStart);
                 dayCell.addEventListener('dragover', dragOver);
                 dayCell.addEventListener('dragleave', dragLeave);
@@ -748,17 +800,17 @@
         function dragStart(e) {
             if (e.target.classList.contains('day-cell') && e.target.draggable) {
                 draggedDateString = e.target.dataset.date;
-                e.dataTransfer.setData('text/plain', draggedDateString); // Set data
+                e.dataTransfer.setData('text/plain', draggedDateString);
                 e.dataTransfer.effectAllowed = 'move';
-                e.target.classList.add('dragging'); // Optional: Add a class for styling the dragged item
+                e.target.classList.add('dragging');
             }
         }
 
         function dragOver(e) {
-            e.preventDefault(); // Allows drop
+            e.preventDefault();
             if (e.target.classList.contains('day-cell') || e.target.closest('.day-cell')) {
                 const targetCell = e.target.classList.contains('day-cell') ? e.target : e.target.closest('.day-cell');
-                if (targetCell && targetCell.dataset.date !== draggedDateString) { // Don't highlight if dropping on itself
+                if (targetCell && targetCell.dataset.date !== draggedDateString) {
                     targetCell.classList.add('droppable');
                 }
             }
@@ -778,7 +830,6 @@
             const targetCell = e.target.classList.contains('day-cell') ? e.target : e.target.closest('.day-cell');
 
             if (!targetCell || !draggedDateString || targetCell.dataset.date === draggedDateString) {
-                // Remove highlight if not a valid drop target or dropping on self
                 if (targetCell) targetCell.classList.remove('droppable');
                 return;
             }
@@ -786,18 +837,20 @@
             const sourceDate = draggedDateString;
             const targetDate = targetCell.dataset.date;
 
-            const confirmOverwrite = calendarData[targetDate] && confirm(`El ${targetDate} ya tiene un evento. ¿Deseas reemplazarlo con el evento del ${sourceDate}?`);
-
-            if (!calendarData[targetDate] || confirmOverwrite) {
-                // Move (copy then delete) the event data
-                calendarData[targetDate] = { ...calendarData[sourceDate] }; // Copy configuration
-                delete calendarData[sourceDate]; // Remove from original date
-
-                localStorage.setItem('creatorCalendarData', JSON.stringify(calendarData));
-                renderCalendar(); // Re-render the calendar
-            }
+            // Using custom modal for confirmation instead of alert/confirm
+            showCustomConfirm(
+                `El ${targetDate} ya tiene un evento. ¿Deseas reemplazarlo con el evento del ${sourceDate}?`,
+                () => { // On confirm
+                    calendarData[targetDate] = { ...calendarData[sourceDate] };
+                    delete calendarData[sourceDate];
+                    localStorage.setItem('creatorCalendarData', JSON.stringify(calendarData));
+                    renderCalendar();
+                },
+                () => { // On cancel
+                    // Do nothing
+                }
+            );
             
-            // Clean up drag-related classes
             if (targetCell) targetCell.classList.remove('droppable');
             if (document.querySelector('.day-cell.dragging')) {
                 document.querySelector('.day-cell.dragging').classList.remove('dragging');
@@ -806,7 +859,7 @@
         }
 
 
-        // --- Funciones del Modal ---
+        // --- Modal Functions ---
 
         function openModal(dayCell) {
             selectedDayCell = dayCell;
@@ -911,6 +964,36 @@
             }
         }
 
+        // --- Custom Confirmation Modal (Instead of alert/confirm) ---
+        function showCustomConfirm(message, onConfirm, onCancel) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+                z-index: 1001; animation: fadeIn 0.3s ease-out;
+            `;
+            modal.innerHTML = `
+                <div style="background-color: var(--color-card-bg); padding: 30px; border-radius: 15px; max-width: 400px;
+                            box-shadow: 0 10px 30px var(--color-shadow); text-align: center; animation: slideIn 0.3s ease-out;">
+                    <p style="margin-bottom: 20px; font-size: 1.1em; color: var(--color-text-dark);">${message}</p>
+                    <button id="confirmYes" style="background-color: #2ECC71; color: white; padding: 10px 20px; border: none;
+                                                    border-radius: 8px; cursor: pointer; margin-right: 10px; transition: background-color 0.3s;">Sí</button>
+                    <button id="confirmNo" style="background-color: #E74C3C; color: white; padding: 10px 20px; border: none;
+                                                   border-radius: 8px; cursor: pointer; transition: background-color 0.3s;">No</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById('confirmYes').onclick = () => {
+                onConfirm();
+                modal.remove();
+            };
+            document.getElementById('confirmNo').onclick = () => {
+                onCancel();
+                modal.remove();
+            };
+        }
+
 
         // --- Event Listeners ---
 
@@ -946,44 +1029,67 @@
         });
 
         resetDatesBtn.addEventListener('click', () => {
-            if (confirm('¿Estás seguro de que quieres resetear todas las fechas? Esta acción no se puede deshacer.')) {
-                localStorage.removeItem('creatorCalendarData');
-                for (const key in calendarData) {
-                    if (calendarData.hasOwnProperty(key)) {
-                        delete calendarData[key];
+            showCustomConfirm(
+                '¿Estás seguro de que quieres resetear todas las fechas? Esta acción no se puede deshacer.',
+                () => { // On confirm
+                    localStorage.removeItem('creatorCalendarData');
+                    for (const key in calendarData) {
+                        if (calendarData.hasOwnProperty(key)) {
+                            delete calendarData[key];
+                        }
                     }
+                    renderCalendar();
+                    showCustomConfirm('Todas las fechas han sido reseteadas.', () => {}, () => {}); // Simple alert
+                },
+                () => { // On cancel
+                    // Do nothing
                 }
-                renderCalendar();
-                alert('Todas las fechas han sido reseteadas.');
-            }
+            );
         });
 
-        // --- Funciones para el Tema (del turno anterior) ---
-        let currentTheme = localStorage.getItem('theme') || 'light';
+        // --- Theme Management ---
+        let currentActiveTheme = localStorage.getItem('activeTheme') || 'original'; // 'original', 'blue', 'green'
+        let currentDarkModeStatus = localStorage.getItem('darkModeStatus') === 'true'; // true/false
 
-        function applyTheme(theme) {
-            if (theme === 'dark') {
+        function applyTheme() {
+            // Remove existing theme classes
+            document.body.classList.remove('blue-mode', 'green-mode');
+
+            // Apply selected theme class
+            if (currentActiveTheme === 'blue') {
+                document.body.classList.add('blue-mode');
+            } else if (currentActiveTheme === 'green') {
+                document.body.classList.add('green-mode');
+            }
+            // 'original' theme has no specific class, it's the default root variables
+
+            // Apply dark mode status
+            if (currentDarkModeStatus) {
                 document.body.classList.add('dark-mode');
-                themeToggleBtn.textContent = '🌙 Modo Oscuro';
+                darkModeToggleBtn.textContent = '☀️ Modo Claro';
             } else {
                 document.body.classList.remove('dark-mode');
-                themeToggleBtn.textContent = '☀️ Modo Claro';
+                darkModeToggleBtn.textContent = '🌙 Modo Oscuro';
             }
-            localStorage.setItem('theme', theme);
-            currentTheme = theme;
+
+            localStorage.setItem('activeTheme', currentActiveTheme);
+            localStorage.setItem('darkModeStatus', currentDarkModeStatus);
+            themeSelector.value = currentActiveTheme; // Sync dropdown
         }
 
-        themeToggleBtn.addEventListener('click', () => {
-            if (currentTheme === 'light') {
-                applyTheme('dark');
-            } else {
-                applyTheme('light');
-            }
+        themeSelector.addEventListener('change', (event) => {
+            currentActiveTheme = event.target.value;
+            applyTheme();
+        });
+
+        darkModeToggleBtn.addEventListener('click', () => {
+            currentDarkModeStatus = !currentDarkModeStatus;
+            applyTheme();
         });
 
         document.addEventListener('DOMContentLoaded', () => {
-            applyTheme(currentTheme);
-            renderCalendar();
+            applyTheme(); // Apply theme on load
+            renderCalendar(); // Render calendar after theme is applied
         });
     </script>
 </body>
