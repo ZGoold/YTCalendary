@@ -50,6 +50,20 @@
             --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra ligera */
         }
 
+        /* --- Dark Mode for Original Theme --- */
+        body.dark-mode:not(.blue-mode):not(.green-mode) {
+            --color-primary: #FF9999; /* Rojo más suave para oscuro */
+            --color-secondary: #7ED6DF; /* Turquesa más claro para oscuro */
+            --color-accent: #FFE599; /* Amarillo más claro */
+            --color-text-dark: #e0e0e0; /* Texto claro en oscuro */
+            --color-text-light: #333; /* Texto oscuro en elementos claros si los hubiera */
+            --color-bg-light: #1a1a2e; /* Fondo general oscuro */
+            --color-bg-dark: #16213e; /* Fondo de contenedores más oscuro */
+            --color-card-bg: #0f3460; /* Fondo de tarjetas oscuro */
+            --color-border: #4a5d73;
+            --color-shadow: rgba(0, 0, 0, 0.3);
+        }
+
         /* --- Dark Mode for Blue Theme (as previously defined) --- */
         body.blue-mode.dark-mode {
             --color-primary: #85C1E9; /* Azul brillante para oscuro */
@@ -143,11 +157,11 @@
             margin-bottom: 20px;
             padding: 10px 0;
             border-bottom: 2px solid var(--color-border);
-            flex-wrap: wrap; /* Para asegurar que los botones se ajusten en pantallas pequeñas */
-            gap: 10px; /* Espacio entre los elementos */
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .calendar-nav > * {
-            flex-shrink: 0; /* Evita que los elementos se encojan si no hay espacio */
+            flex-shrink: 0;
         }
 
         .calendar-nav button, .calendar-nav select {
@@ -160,27 +174,42 @@
             font-size: 1.1em;
             font-family: var(--font-heading);
             transition: background-color 0.3s ease, transform 0.2s ease;
-            -webkit-appearance: none; /* Eliminar estilo por defecto de select en webkit */
-            -moz-appearance: none;    /* Eliminar estilo por defecto de select en mozilla */
-            appearance: none;         /* Eliminar estilo por defecto de select */
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22white%22%20d%3D%22M287%20197.8L159.2%2069.9c-4.4-4.4-11.4-4.4-15.8%200L5.4%20197.8c-4.4%204.4-4.4%2011.4%200%2015.8l15.8%2015.8c4.4%204.4%2011.4%204.4%2015.8%200l118.8-118.7L255.4%20229.4c4.4%204.4%2011.4%204.4%2015.8%200l15.8-15.8c4.4-4.5%204.4-11.5%200-15.9z%22%2F%3E%3C%2Fsvg%3E'); /* Flecha personalizada para select */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22white%22%20d%3D%22M287%20197.8L159.2%2069.9c-4.4-4.4-11.4-4.4-15.8%200L5.4%20197.8c-4.4%204.4-4.4%2011.4%200%2015.8l15.8%2015.8c4.4%204.4%2011.4%204.4%2015.8%200l118.8-118.7L255.4%20229.4c4.4%204.4%2011.4%204.4%2015.8%200l15.8-15.8c4.4-4.5%204.4-11.5%200-15.9z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 12px;
-            padding-right: 35px; /* Espacio para la flecha */
+            padding-right: 35px;
         }
 
         .calendar-nav button:hover, .calendar-nav select:hover {
-            background-color: var(--color-primary); /* Un color de hover que combine */
+            background-color: var(--color-primary);
             transform: translateY(-2px);
         }
 
         /* Styles for specific buttons */
         .calendar-nav #resetDatesBtn {
-            background-color: #E74C3C; /* Rojo para resetear */
+            background-color: #E74C3C;
         }
         .calendar-nav #resetDatesBtn:hover {
             background-color: #CB4335;
+        }
+
+        /* Styles for View Mode buttons */
+        .calendar-nav .view-mode-buttons button {
+            background-color: var(--color-secondary);
+            font-size: 0.9em;
+            padding: 8px 12px;
+        }
+        .calendar-nav .view-mode-buttons button.active {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            box-shadow: 0 2px 5px var(--color-shadow);
+        }
+        .calendar-nav .view-mode-buttons button:hover {
+            background-color: var(--color-primary);
         }
 
         .current-month-year {
@@ -242,7 +271,7 @@
 
         .day-cell.today {
             border: 2px solid var(--color-primary);
-            box-shadow: 0 0 15px rgba(var(--color-primary-rgb),0.4); /* Usa el color primario dinámico */
+            box-shadow: 0 0 15px rgba(var(--color-primary-rgb),0.4);
         }
 
         .day-number-wrapper {
@@ -448,7 +477,7 @@
         }
 
         .modal-content button.save-button:hover {
-            background-color: var(--color-secondary); /* Un color de hover que combine */
+            background-color: var(--color-secondary);
             transform: translateY(-2px);
         }
 
@@ -505,7 +534,7 @@
             object-fit: contain;
         }
         #currentImagePreview button {
-            background-color: #E74C3C !important; /* Rojo para el botón de quitar imagen */
+            background-color: #E74C3C !important;
             width: auto !important;
             padding: 8px 15px !important;
             font-size: 0.9em !important;
@@ -515,6 +544,134 @@
         #currentImagePreview button:hover {
             background-color: #CB4335 !important;
         }
+
+        /* --- Tag Management Styles --- */
+        .tag-management-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+        .tag-management-section h4 {
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .tag-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .tag-input-group input {
+            flex-grow: 1;
+            margin-bottom: 0; /* Override default margin */
+        }
+        .tag-input-group button {
+            background-color: #2ECC71; /* Green for add */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .tag-input-group button:hover {
+            background-color: #28B463;
+        }
+        .existing-tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            min-height: 30px; /* Ensure space even if empty */
+        }
+        .tag-pill {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .tag-pill:hover {
+            transform: translateY(-2px);
+            background-color: var(--color-primary);
+        }
+        .tag-pill .delete-tag {
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 2px;
+            transition: color 0.3s ease;
+        }
+        .tag-pill .delete-tag:hover {
+            color: #E74C3C; /* Red for delete */
+        }
+
+        /* Tag Selection for the current day */
+        .day-tags-selection {
+            margin-bottom: 15px;
+        }
+        .day-tags-selection h4 {
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .tag-checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tag-checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: var(--color-bg-light);
+            border: 1px solid var(--color-border);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-weight: normal; /* Override default label bold */
+        }
+        .tag-checkbox-group input[type="checkbox"] {
+            margin-bottom: 0; /* Reset input margin */
+            width: auto;
+            accent-color: var(--color-primary); /* Style checkbox itself */
+        }
+        .tag-checkbox-group label:has(input[type="checkbox"]:checked) {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border-color: var(--color-primary);
+        }
+
+        /* Displaying tags on day cells */
+        .day-cell-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 5px; /* Space from event text */
+        }
+        .day-cell-tag-pill {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            font-size: 0.7em;
+            padding: 3px 6px;
+            border-radius: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%; /* Ensure it doesn't overflow */
+        }
+
 
         /* --- Footer --- */
         footer {
@@ -591,6 +748,12 @@
                 width: 30px;
                 height: 30px;
             }
+            .tag-input-group {
+                flex-direction: column;
+            }
+            .tag-input-group button {
+                width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -615,9 +778,9 @@
 
     <div class="calendar-container">
         <div class="calendar-nav">
-            <button id="prevMonth">← Anterior</button>
-            <div class="current-month-year" id="currentMonthYear"></div>
-            <button id="nextMonth">Siguiente →</button>
+            <button id="prevBtn">← Anterior</button>
+            <div class="current-month-year" id="currentDisplayDate"></div>
+            <button id="nextBtn">Siguiente →</button>
             <button id="resetDatesBtn">🗑️ Resetear Fechas</button>
             <!-- Dropdown para seleccionar el tema -->
             <select id="themeSelector">
@@ -627,9 +790,14 @@
             </select>
             <!-- El botón de modo oscuro/claro ahora cambiará el sub-tema (light/dark) -->
             <button id="darkModeToggleBtn">🌙 Modo Oscuro</button>
+            <!-- Botones para cambiar la vista -->
+            <div class="view-mode-buttons">
+                <button id="monthViewBtn" class="active">Vista Mes</button>
+                <button id="weekViewBtn">Vista Semana</button>
+            </div>
         </div>
 
-        <div class="weekdays">
+        <div class="weekdays" id="weekdaysHeader">
             <div>Dom</div>
             <div>Lun</div>
             <div>Mar</div>
@@ -640,7 +808,7 @@
         </div>
 
         <div class="days-grid" id="daysGrid">
-            </div>
+        </div>
     </div>
 
     <div id="eventModal" class="modal">
@@ -672,19 +840,51 @@
                 <input type="color" id="customColorPicker" title="🌈 Elegir color personalizado">
             </div>
 
+            <!-- Tag Management Section -->
+            <div class="tag-management-section">
+                <h4>Gestionar Mis Tags</h4>
+                <div class="tag-input-group">
+                    <input type="text" id="newTagInput" placeholder="Añadir nuevo tag (ej. Vlog, SEO)" maxlength="20">
+                    <button id="addTagBtn">Añadir Tag</button>
+                </div>
+                <div class="existing-tags-list" id="existingTagsList">
+                    <!-- Tags will be rendered here -->
+                </div>
+            </div>
+
+            <!-- Day Tags Selection Section -->
+            <div class="day-tags-selection">
+                <h4>Tags para este Día:</h4>
+                <div class="tag-checkbox-group" id="dayTagsSelection">
+                    <!-- Checkboxes for tags will be rendered here -->
+                </div>
+            </div>
+
             <button class="save-button" onclick="saveDayDetails()">✅ Guardar Cambios</button>
         </div>
     </div>
+
+    <!-- Custom Confirmation/Alert Modal -->
+    <div id="customAlertConfirmModal" class="modal">
+        <div class="modal-content" style="border-top: 8px solid var(--color-secondary);">
+            <p id="customModalMessage" style="margin-bottom: 20px; font-size: 1.1em; color: var(--color-text-dark);"></p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button id="customModalConfirmBtn" style="background-color: #2ECC71; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;">Aceptar</button>
+                <button id="customModalCancelBtn" style="background-color: #E74C3C; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
 
     <footer>
         <p>&copy; 2025 Calendario del Creador. Hecho con ❤️ para YouTubers con pasión.</p>
     </footer>
 
     <script>
-        const monthYearDisplay = document.getElementById('currentMonthYear');
+        const currentDisplayDate = document.getElementById('currentDisplayDate');
         const daysGrid = document.getElementById('daysGrid');
-        const prevMonthBtn = document.getElementById('prevMonth');
-        const nextMonthBtn = document.getElementById('nextMonth');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
         const eventModal = document.getElementById('eventModal');
         const modalTitle = document.getElementById('modalTitle');
         const selectedDateText = document.getElementById('selectedDateText');
@@ -695,32 +895,131 @@
         const colorPalette = document.querySelector('.color-palette');
         const customColorPicker = document.getElementById('customColorPicker');
         const resetDatesBtn = document.getElementById('resetDatesBtn');
-        const themeSelector = document.getElementById('themeSelector'); // Nuevo selector de tema
-        const darkModeToggleBtn = document.getElementById('darkModeToggleBtn'); // Botón para modo oscuro/claro del sub-tema
+        const themeSelector = document.getElementById('themeSelector');
+        const darkModeToggleBtn = document.getElementById('darkModeToggleBtn');
+        const monthViewBtn = document.getElementById('monthViewBtn');
+        const weekViewBtn = document.getElementById('weekViewBtn');
+        const weekdaysHeader = document.getElementById('weekdaysHeader');
+
+        // Tag related elements
+        const newTagInput = document.getElementById('newTagInput');
+        const addTagBtn = document.getElementById('addTagBtn');
+        const existingTagsList = document.getElementById('existingTagsList');
+        const dayTagsSelection = document.getElementById('dayTagsSelection');
+
+        // Custom Modal elements
+        const customAlertConfirmModal = document.getElementById('customAlertConfirmModal');
+        const customModalMessage = document.getElementById('customModalMessage');
+        const customModalConfirmBtn = document.getElementById('customModalConfirmBtn');
+        const customModalCancelBtn = document.getElementById('customModalCancelBtn');
+
 
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
+        let currentWeekStartDate = getStartOfWeek(new Date()); // Represents the Sunday of the current week
         let selectedDayCell = null;
 
         const calendarData = JSON.parse(localStorage.getItem('creatorCalendarData')) || {};
+        let allTags = JSON.parse(localStorage.getItem('creatorTags')) || [];
+        allTags = Array.from(new Set(allTags)); // Ensure uniqueness
+
+        let currentActiveTheme = localStorage.getItem('activeTheme') || 'original';
+        let currentDarkModeStatus = localStorage.getItem('darkModeStatus') === 'true';
+        let viewMode = localStorage.getItem('viewMode') || 'month'; // 'month' or 'week'
+
 
         const monthNames = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
         ];
 
-        // --- Calendar Functions ---
+        // --- Utility Functions ---
+
+        /**
+         * Gets the Sunday of the week for a given date.
+         * @param {Date} date - The date to find the start of the week for.
+         * @returns {Date} The Date object representing the Sunday of that week.
+         */
+        function getStartOfWeek(date) {
+            const d = new Date(date);
+            const day = d.getDay(); // 0 for Sunday, 1 for Monday, etc.
+            const diff = d.getDate() - day; // Adjust to Sunday
+            return new Date(d.getFullYear(), d.getMonth(), diff);
+        }
+
+        /**
+         * Converts a hex color to an RGB string for use in rgba().
+         * @param {string} hex - Hex color string (e.g., "#RRGGBB").
+         * @returns {string} RGB string (e.g., "R,G,B").
+         */
+        function hexToRgb(hex) {
+            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                return r + r + g + g + b + b;
+            });
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}` : null;
+        }
+
+        // --- Custom Confirmation/Alert Modal (Instead of alert/confirm) ---
+        let customModalCallbacks = { onConfirm: null, onCancel: null };
+
+        function showCustomModal(message, type = 'alert', onConfirm = () => {}, onCancel = () => {}) {
+            customModalMessage.textContent = message;
+            customModalCallbacks.onConfirm = onConfirm;
+            customModalCallbacks.onCancel = onCancel;
+
+            if (type === 'alert') {
+                customModalConfirmBtn.textContent = 'Aceptar';
+                customModalCancelBtn.style.display = 'none';
+            } else { // 'confirm'
+                customModalConfirmBtn.textContent = 'Sí';
+                customModalCancelBtn.textContent = 'No';
+                customModalCancelBtn.style.display = 'inline-block';
+            }
+            customAlertConfirmModal.style.display = 'flex';
+        }
+
+        customModalConfirmBtn.onclick = () => {
+            customAlertConfirmModal.style.display = 'none';
+            customModalCallbacks.onConfirm();
+        };
+
+        customModalCancelBtn.onclick = () => {
+            customAlertConfirmModal.style.display = 'none';
+            customModalCallbacks.onCancel();
+        };
+
+
+        // --- Calendar Rendering Functions ---
 
         function renderCalendar() {
             daysGrid.innerHTML = '';
-            monthYearDisplay.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            // Adjust header display and button activity based on viewMode
+            monthViewBtn.classList.toggle('active', viewMode === 'month');
+            weekViewBtn.classList.toggle('active', viewMode === 'week');
+
+            if (viewMode === 'month') {
+                renderMonthView();
+            } else { // week view
+                renderWeekView();
+            }
+        }
+
+        function renderMonthView() {
+            weekdaysHeader.style.display = 'grid'; // Ensure weekdays are visible
+            daysGrid.style.gridTemplateColumns = 'repeat(7, 1fr)'; // Ensure 7 columns
+
+            currentDisplayDate.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
             const today = new Date();
             const todayDateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay(); // 0 for Sunday
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
+            // Add empty cells for preceding days of the week
             for (let i = 0; i < firstDayOfMonth; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.classList.add('day-cell', 'empty-day');
@@ -730,68 +1029,122 @@
                 daysGrid.appendChild(emptyCell);
             }
 
+            // Add days of the month
             for (let day = 1; day <= daysInMonth; day++) {
-                const dayCell = document.createElement('div');
-                dayCell.classList.add('day-cell');
-                dayCell.dataset.day = day;
-                dayCell.dataset.month = currentMonth + 1;
-                dayCell.dataset.year = currentYear;
-
+                const date = new Date(currentYear, currentMonth, day);
                 const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                dayCell.dataset.date = dateString;
-
-                if (dateString === todayDateString) {
-                    dayCell.classList.add('today');
-                }
-
-                const dayNumberWrapper = document.createElement('div');
-                dayNumberWrapper.classList.add('day-number-wrapper');
-                const dayNumber = document.createElement('span');
-                dayNumber.classList.add('day-number');
-                dayNumber.textContent = day;
-                dayNumberWrapper.appendChild(dayNumber);
-                dayCell.appendChild(dayNumberWrapper);
-
-                const dayContentWrapper = document.createElement('div');
-                dayContentWrapper.classList.add('day-content-wrapper');
-                dayCell.appendChild(dayContentWrapper);
-
-                const savedData = calendarData[dateString];
-                if (savedData) {
-                    if (savedData.image) {
-                        const img = document.createElement('img');
-                        img.classList.add('day-image');
-                        img.src = savedData.image;
-                        dayContentWrapper.appendChild(img);
-                    }
-                    if (savedData.event) {
-                        const eventDiv = document.createElement('div');
-                        eventDiv.classList.add('day-event-text');
-                        eventDiv.innerHTML = `<span>${savedData.event}</span>`;
-                        dayContentWrapper.appendChild(eventDiv);
-                    }
-                    if (savedData.color && savedData.color !== 'transparent') {
-                        dayCell.style.setProperty('--data-color-value', savedData.color);
-                        dayCell.dataset.color = savedData.color;
-                    } else {
-                        dayCell.style.removeProperty('--data-color-value');
-                        delete dayCell.dataset.color;
-                    }
-
-                    dayCell.draggable = true;
-                } else {
-                    dayCell.draggable = false;
-                }
-
-                dayCell.addEventListener('click', () => openModal(dayCell));
-                
-                dayCell.addEventListener('dragstart', dragStart);
-                dayCell.addEventListener('dragover', dragOver);
-                dayCell.addEventListener('dragleave', dragLeave);
-                dayCell.addEventListener('drop', drop);
-
-                daysGrid.appendChild(dayCell);
+                addDayCell(date, dateString, todayDateString);
             }
+        }
+
+        function renderWeekView() {
+            weekdaysHeader.style.display = 'grid'; // Ensure weekdays are visible
+            daysGrid.style.gridTemplateColumns = 'repeat(7, 1fr)'; // Ensure 7 columns
+
+            const today = new Date();
+            const todayDateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+            // Calculate dates for the current week starting from currentWeekStartDate (Sunday)
+            const weekDates = [];
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(currentWeekStartDate);
+                date.setDate(currentWeekStartDate.getDate() + i);
+                weekDates.push(date);
+            }
+
+            // Update display to show week range
+            const startDay = weekDates[0].getDate();
+            const startMonth = monthNames[weekDates[0].getMonth()];
+            const endDay = weekDates[6].getDate();
+            const endMonth = monthNames[weekDates[6].getMonth()];
+            const year = weekDates[0].getFullYear();
+
+            currentDisplayDate.textContent = `${startDay} ${startMonth} - ${endDay} ${endMonth} ${year}`;
+
+            // Add day cells for the week
+            weekDates.forEach(date => {
+                const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+                addDayCell(date, dateString, todayDateString);
+            });
+        }
+
+        /**
+         * Creates and appends a single day cell to the grid.
+         * @param {Date} dateObj - The Date object for the cell.
+         * @param {string} dateString - The 'YYYY-MM-DD' string for the date.
+         * @param {string} todayDateString - The 'YYYY-MM-DD' string for today's date.
+         */
+        function addDayCell(dateObj, dateString, todayDateString) {
+            const dayCell = document.createElement('div');
+            dayCell.classList.add('day-cell');
+            dayCell.dataset.day = dateObj.getDate();
+            dayCell.dataset.month = dateObj.getMonth() + 1;
+            dayCell.dataset.year = dateObj.getFullYear();
+            dayCell.dataset.date = dateString;
+
+            if (dateString === todayDateString) {
+                dayCell.classList.add('today');
+            }
+
+            const dayNumberWrapper = document.createElement('div');
+            dayNumberWrapper.classList.add('day-number-wrapper');
+            const dayNumber = document.createElement('span');
+            dayNumber.classList.add('day-number');
+            dayNumber.textContent = dateObj.getDate();
+            dayNumberWrapper.appendChild(dayNumber);
+            dayCell.appendChild(dayNumberWrapper);
+
+            const dayContentWrapper = document.createElement('div');
+            dayContentWrapper.classList.add('day-content-wrapper');
+            dayCell.appendChild(dayContentWrapper);
+
+            const savedData = calendarData[dateString];
+            if (savedData) {
+                if (savedData.image) {
+                    const img = document.createElement('img');
+                    img.classList.add('day-image');
+                    img.src = savedData.image;
+                    dayContentWrapper.appendChild(img);
+                }
+                if (savedData.event) {
+                    const eventDiv = document.createElement('div');
+                    eventDiv.classList.add('day-event-text');
+                    eventDiv.innerHTML = `<span>${savedData.event}</span>`;
+                    dayContentWrapper.appendChild(eventDiv);
+                }
+                if (savedData.color && savedData.color !== 'transparent') {
+                    dayCell.style.setProperty('--data-color-value', savedData.color);
+                    dayCell.dataset.color = savedData.color;
+                } else {
+                    dayCell.style.removeProperty('--data-color-value');
+                    delete dayCell.dataset.color;
+                }
+                
+                // Display tags on the day cell
+                if (savedData.tags && savedData.tags.length > 0) {
+                    const tagsDiv = document.createElement('div');
+                    tagsDiv.classList.add('day-cell-tags');
+                    savedData.tags.forEach(tag => {
+                        const tagPill = document.createElement('span');
+                        tagPill.classList.add('day-cell-tag-pill');
+                        tagPill.textContent = tag;
+                        tagsDiv.appendChild(tagPill);
+                    });
+                    dayContentWrapper.appendChild(tagsDiv);
+                }
+
+                dayCell.draggable = true;
+            } else {
+                dayCell.draggable = false;
+            }
+
+            dayCell.addEventListener('click', () => openModal(dayCell));
+            dayCell.addEventListener('dragstart', dragStart);
+            dayCell.addEventListener('dragover', dragOver);
+            dayCell.addEventListener('dragleave', dragLeave);
+            dayCell.addEventListener('drop', drop);
+
+            daysGrid.appendChild(dayCell);
         }
 
         // --- Drag & Drop Functions ---
@@ -837,9 +1190,9 @@
             const sourceDate = draggedDateString;
             const targetDate = targetCell.dataset.date;
 
-            // Using custom modal for confirmation instead of alert/confirm
-            showCustomConfirm(
+            showCustomModal(
                 `El ${targetDate} ya tiene un evento. ¿Deseas reemplazarlo con el evento del ${sourceDate}?`,
+                'confirm',
                 () => { // On confirm
                     calendarData[targetDate] = { ...calendarData[sourceDate] };
                     delete calendarData[sourceDate];
@@ -864,9 +1217,9 @@
         function openModal(dayCell) {
             selectedDayCell = dayCell;
             const dateString = dayCell.dataset.date;
-            const savedData = calendarData[dateString] || { event: '', image: '', color: 'transparent' };
+            const savedData = calendarData[dateString] || { event: '', image: '', color: 'transparent', tags: [] };
 
-            selectedDateText.textContent = `${dayCell.dataset.day} de ${monthNames[currentMonth]} de ${currentYear}`;
+            selectedDateText.textContent = `${dayCell.dataset.day} de ${monthNames[dateObjFromDateString(dateString).getMonth()]} de ${dayCell.dataset.year}`;
             eventTextarea.value = savedData.event;
 
             if (savedData.image) {
@@ -890,6 +1243,9 @@
                 customColorPicker.value = '#000000';
             }
 
+            renderTagManagement();
+            renderDayTagSelection(savedData.tags);
+
             eventModal.style.display = 'flex';
         }
 
@@ -903,6 +1259,8 @@
             document.querySelectorAll('.color-option').forEach(option => option.classList.remove('selected'));
             document.querySelector('.color-option[data-color="transparent"]').classList.add('selected');
             customColorPicker.value = '#000000';
+            newTagInput.value = ''; // Clear tag input
+            dayTagsSelection.innerHTML = ''; // Clear tag selection checkboxes
         }
 
         async function saveDayDetails() {
@@ -912,6 +1270,7 @@
             const event = eventTextarea.value.trim();
             let imageBase64 = calendarData[dateString]?.image || '';
             let selectedColor = document.querySelector('.color-option.selected')?.dataset.color;
+            const selectedTags = Array.from(dayTagsSelection.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
 
             if (!selectedColor || selectedColor === 'transparent') {
                 if (customColorPicker.value && customColorPicker.value !== '#000000') {
@@ -928,11 +1287,12 @@
                 }
             }
 
-            if (event || imageBase64 || (selectedColor && selectedColor !== 'transparent')) {
+            if (event || imageBase64 || (selectedColor && selectedColor !== 'transparent') || selectedTags.length > 0) {
                 calendarData[dateString] = {
                     event: event,
                     image: imageBase64,
-                    color: selectedColor
+                    color: selectedColor,
+                    tags: selectedTags
                 };
             } else {
                 delete calendarData[dateString];
@@ -964,53 +1324,112 @@
             }
         }
 
-        // --- Custom Confirmation Modal (Instead of alert/confirm) ---
-        function showCustomConfirm(message, onConfirm, onCancel) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
-                z-index: 1001; animation: fadeIn 0.3s ease-out;
-            `;
-            modal.innerHTML = `
-                <div style="background-color: var(--color-card-bg); padding: 30px; border-radius: 15px; max-width: 400px;
-                            box-shadow: 0 10px 30px var(--color-shadow); text-align: center; animation: slideIn 0.3s ease-out;">
-                    <p style="margin-bottom: 20px; font-size: 1.1em; color: var(--color-text-dark);">${message}</p>
-                    <button id="confirmYes" style="background-color: #2ECC71; color: white; padding: 10px 20px; border: none;
-                                                    border-radius: 8px; cursor: pointer; margin-right: 10px; transition: background-color 0.3s;">Sí</button>
-                    <button id="confirmNo" style="background-color: #E74C3C; color: white; padding: 10px 20px; border: none;
-                                                   border-radius: 8px; cursor: pointer; transition: background-color 0.3s;">No</button>
-                </div>
-            `;
-            document.body.appendChild(modal);
+        function dateObjFromDateString(dateString) {
+            const [year, month, day] = dateString.split('-').map(Number);
+            return new Date(year, month - 1, day);
+        }
 
-            document.getElementById('confirmYes').onclick = () => {
-                onConfirm();
-                modal.remove();
-            };
-            document.getElementById('confirmNo').onclick = () => {
-                onCancel();
-                modal.remove();
-            };
+        // --- Tag Management Functions ---
+        function renderTagManagement() {
+            existingTagsList.innerHTML = '';
+            allTags.forEach(tag => {
+                const tagPill = document.createElement('span');
+                tagPill.classList.add('tag-pill');
+                tagPill.textContent = tag;
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('delete-tag');
+                deleteBtn.textContent = 'x';
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation(); // Prevent modal from closing if this was inside a clickable area
+                    deleteTag(tag);
+                };
+                tagPill.appendChild(deleteBtn);
+                existingTagsList.appendChild(tagPill);
+            });
+        }
+
+        function addTag() {
+            const newTag = newTagInput.value.trim();
+            if (newTag && !allTags.includes(newTag)) {
+                allTags.push(newTag);
+                localStorage.setItem('creatorTags', JSON.stringify(allTags));
+                newTagInput.value = '';
+                renderTagManagement();
+                renderDayTagSelection(getCurrentlySelectedDayTags()); // Re-render tag selection for current modal
+            }
+        }
+
+        function deleteTag(tagToDelete) {
+            showCustomModal(
+                `¿Estás seguro de que quieres eliminar el tag "${tagToDelete}"? Se eliminará de todas las fechas.`,
+                'confirm',
+                () => { // On confirm
+                    allTags = allTags.filter(tag => tag !== tagToDelete);
+                    localStorage.setItem('creatorTags', JSON.stringify(allTags));
+
+                    // Remove this tag from all calendar entries
+                    for (const dateString in calendarData) {
+                        if (calendarData.hasOwnProperty(dateString) && calendarData[dateString].tags) {
+                            calendarData[dateString].tags = calendarData[dateString].tags.filter(tag => tag !== tagToDelete);
+                        }
+                    }
+                    localStorage.setItem('creatorCalendarData', JSON.stringify(calendarData));
+
+                    renderTagManagement();
+                    renderDayTagSelection(getCurrentlySelectedDayTags()); // Re-render tag selection
+                    renderCalendar(); // Re-render calendar to reflect changes
+                }
+            );
+        }
+
+        function renderDayTagSelection(selectedTagsForDay) {
+            dayTagsSelection.innerHTML = '';
+            allTags.forEach(tag => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = tag;
+                checkbox.checked = selectedTagsForDay.includes(tag);
+                
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(tag));
+                dayTagsSelection.appendChild(label);
+            });
+        }
+
+        function getCurrentlySelectedDayTags() {
+            if (selectedDayCell) {
+                const dateString = selectedDayCell.dataset.date;
+                return calendarData[dateString]?.tags || [];
+            }
+            return [];
         }
 
 
         // --- Event Listeners ---
 
-        prevMonthBtn.addEventListener('click', () => {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
+        prevBtn.addEventListener('click', () => {
+            if (viewMode === 'month') {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+            } else { // week view
+                currentWeekStartDate.setDate(currentWeekStartDate.getDate() - 7);
             }
             renderCalendar();
         });
 
-        nextMonthBtn.addEventListener('click', () => {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
+        nextBtn.addEventListener('click', () => {
+            if (viewMode === 'month') {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+            } else { // week view
+                currentWeekStartDate.setDate(currentWeekStartDate.getDate() + 7);
             }
             renderCalendar();
         });
@@ -1029,8 +1448,9 @@
         });
 
         resetDatesBtn.addEventListener('click', () => {
-            showCustomConfirm(
+            showCustomModal(
                 '¿Estás seguro de que quieres resetear todas las fechas? Esta acción no se puede deshacer.',
+                'confirm',
                 () => { // On confirm
                     localStorage.removeItem('creatorCalendarData');
                     for (const key in calendarData) {
@@ -1039,44 +1459,12 @@
                         }
                     }
                     renderCalendar();
-                    showCustomConfirm('Todas las fechas han sido reseteadas.', () => {}, () => {}); // Simple alert
-                },
-                () => { // On cancel
-                    // Do nothing
+                    showCustomModal('Todas las fechas han sido reseteadas.', 'alert');
                 }
             );
         });
 
-        // --- Theme Management ---
-        let currentActiveTheme = localStorage.getItem('activeTheme') || 'original'; // 'original', 'blue', 'green'
-        let currentDarkModeStatus = localStorage.getItem('darkModeStatus') === 'true'; // true/false
-
-        function applyTheme() {
-            // Remove existing theme classes
-            document.body.classList.remove('blue-mode', 'green-mode');
-
-            // Apply selected theme class
-            if (currentActiveTheme === 'blue') {
-                document.body.classList.add('blue-mode');
-            } else if (currentActiveTheme === 'green') {
-                document.body.classList.add('green-mode');
-            }
-            // 'original' theme has no specific class, it's the default root variables
-
-            // Apply dark mode status
-            if (currentDarkModeStatus) {
-                document.body.classList.add('dark-mode');
-                darkModeToggleBtn.textContent = '☀️ Modo Claro';
-            } else {
-                document.body.classList.remove('dark-mode');
-                darkModeToggleBtn.textContent = '🌙 Modo Oscuro';
-            }
-
-            localStorage.setItem('activeTheme', currentActiveTheme);
-            localStorage.setItem('darkModeStatus', currentDarkModeStatus);
-            themeSelector.value = currentActiveTheme; // Sync dropdown
-        }
-
+        // Theme management listeners
         themeSelector.addEventListener('change', (event) => {
             currentActiveTheme = event.target.value;
             applyTheme();
@@ -1087,9 +1475,61 @@
             applyTheme();
         });
 
+        // View mode listeners
+        monthViewBtn.addEventListener('click', () => {
+            if (viewMode !== 'month') {
+                viewMode = 'month';
+                localStorage.setItem('viewMode', viewMode);
+                // When switching from week to month, align current month/year to the current week's date
+                currentMonth = currentWeekStartDate.getMonth();
+                currentYear = currentWeekStartDate.getFullYear();
+                renderCalendar();
+            }
+        });
+
+        weekViewBtn.addEventListener('click', () => {
+            if (viewMode !== 'week') {
+                viewMode = 'week';
+                localStorage.setItem('viewMode', viewMode);
+                // When switching from month to week, set week start date to the beginning of the week of the first day of the current month
+                currentWeekStartDate = getStartOfWeek(new Date(currentYear, currentMonth, 1));
+                renderCalendar();
+            }
+        });
+
+        addTagBtn.addEventListener('click', addTag);
+        newTagInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addTag();
+            }
+        });
+
+
+        // --- Initial Load ---
+        function applyTheme() {
+            document.body.classList.remove('blue-mode', 'green-mode', 'dark-mode');
+
+            if (currentActiveTheme === 'blue') {
+                document.body.classList.add('blue-mode');
+            } else if (currentActiveTheme === 'green') {
+                document.body.classList.add('green-mode');
+            }
+
+            if (currentDarkModeStatus) {
+                document.body.classList.add('dark-mode');
+                darkModeToggleBtn.textContent = '☀️ Modo Claro';
+            } else {
+                darkModeToggleBtn.textContent = '🌙 Modo Oscuro';
+            }
+
+            localStorage.setItem('activeTheme', currentActiveTheme);
+            localStorage.setItem('darkModeStatus', currentDarkModeStatus);
+            themeSelector.value = currentActiveTheme;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            applyTheme(); // Apply theme on load
-            renderCalendar(); // Render calendar after theme is applied
+            applyTheme();
+            renderCalendar(); // Initial render based on stored viewMode
         });
     </script>
 </body>
